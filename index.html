@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI TRADING PANEL MOEX</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background-color: #131722; color: #d1d4dc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        header {
+            background-color: #1c2030; padding: 15px; text-align: center;
+            font-size: 16px; font-weight: bold; border-bottom: 1px solid #2a2e39; color: #2962ff;
+        }
+        .container { padding: 10px; margin-bottom: 30px; }
+        .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin: 15px 5px 8px 5px; color: #787b86; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .card { background-color: #1c2030; border-radius: 8px; border: 1px solid #2a2e39; overflow: hidden; height: 340px; }
+        .card-header { padding: 10px 12px; background-color: #24293d; font-size: 14px; font-weight: 600; border-bottom: 1px solid #2a2e39; }
+        .widget-container { height: 290px; width: 100%; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+
+    <header>🤖 AI TRADING PULSE — ЖИВЫЕ ГРАФИКИ</header>
+
+    <div class="container">
+        <div class="section-title">📊 Российский Рынок (MOEX)</div>
+        <div class="grid">
+            <div class="card"><div class="card-header">Сбербанк (SBER)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+            <div class="card"><div class="card-header">Лукойл (LKOH)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+            <div class="card"><div class="card-header">Газпром (GAZP)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+            <div class="card"><div class="card-header">Фьючерс Индекс ММВБ</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+        </div>
+
+        <div class="section-title">🌟 Металлы, Нефть и Товары</div>
+        <div class="grid">
+            <div class="card"><div class="card-header">Нефть Brent (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+            <div class="card"><div class="card-header">Золото (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+            <div class="card"><div class="card-header">Какао (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+            <div class="card"><div class="card-header">Кофе (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
+        </div>
+    </div>
+
+</body>
+</html>
