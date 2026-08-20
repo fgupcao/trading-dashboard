@@ -1,49 +1,518 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AI TRADING PANEL MOEX</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0,
+                 maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#131722">
+
+    <title>AI TRADING PULSE — MOEX</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
         body {
-            margin: 0; padding: 0;
-            background-color: #131722; color: #d1d4dc;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            background: #131722;
+            color: #d1d4dc;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
         }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
         header {
-            background-color: #1c2030; padding: 15px; text-align: center;
-            font-size: 16px; font-weight: bold; border-bottom: 1px solid #2a2e39; color: #2962ff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            padding: 15px 12px;
+
+            background: #1c2030;
+            border-bottom: 1px solid #2a2e39;
+
+            text-align: center;
+
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+
+            color: #2962ff;
         }
-        .container { padding: 10px; margin-bottom: 30px; }
-        .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin: 15px 5px 8px 5px; color: #787b86; }
-        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .card { background-color: #1c2030; border-radius: 8px; border: 1px solid #2a2e39; overflow: hidden; height: 340px; }
-        .card-header { padding: 10px 12px; background-color: #24293d; font-size: 14px; font-weight: 600; border-bottom: 1px solid #2a2e39; }
-        .widget-container { height: 290px; width: 100%; }
-        iframe { width: 100%; height: 100%; border: none; }
+
+        .status {
+            margin-top: 5px;
+
+            font-size: 10px;
+            font-weight: 400;
+
+            color: #787b86;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+
+            margin: 0 auto;
+            padding: 10px;
+
+            padding-bottom: 40px;
+        }
+
+        .section-title {
+            margin:
+                18px 5px
+                9px 5px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            color: #787b86;
+        }
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns: 1fr;
+
+            gap: 12px;
+        }
+
+        @media (min-width: 700px) {
+            .grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            width: 100%;
+
+            height: 390px;
+
+            overflow: hidden;
+
+            background: #1c2030;
+
+            border: 1px solid #2a2e39;
+            border-radius: 8px;
+        }
+
+        .card-header {
+            height: 46px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 12px;
+
+            background: #24293d;
+
+            border-bottom: 1px solid #2a2e39;
+        }
+
+        .card-name {
+            font-size: 14px;
+            font-weight: 600;
+
+            color: #d1d4dc;
+        }
+
+        .card-symbol {
+            font-size: 10px;
+
+            color: #787b86;
+        }
+
+        /* =========================
+           TRADINGVIEW
+        ========================= */
+
+        .widget-container {
+            width: 100%;
+            height: 344px;
+
+            position: relative;
+        }
+
+        .tradingview-widget-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tradingview-widget-container__widget {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 20px 10px;
+
+            text-align: center;
+
+            font-size: 10px;
+
+            color: #555966;
+        }
+
+        footer a {
+            color: #787b86;
+            text-decoration: none;
+        }
     </style>
 </head>
+
 <body>
 
-    <header>🤖 AI TRADING PULSE — ЖИВЫЕ ГРАФИКИ</header>
-
-    <div class="container">
-        <div class="section-title">📊 Российский Рынок (MOEX)</div>
-        <div class="grid">
-            <div class="card"><div class="card-header">Сбербанк (SBER)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-            <div class="card"><div class="card-header">Лукойл (LKOH)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-            <div class="card"><div class="card-header">Газпром (GAZP)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-            <div class="card"><div class="card-header">Фьючерс Индекс ММВБ</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-        </div>
-
-        <div class="section-title">🌟 Металлы, Нефть и Товары</div>
-        <div class="grid">
-            <div class="card"><div class="card-header">Нефть Brent (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-            <div class="card"><div class="card-header">Золото (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-            <div class="card"><div class="card-header">Какао (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-            <div class="card"><div class="card-header">Кофе (Фьючерс)</div><div class="widget-container"><iframe src="https://tradingview.com"></iframe></div></div>
-        </div>
+<header>
+    🤖 AI TRADING PULSE
+    <div class="status">
+        LIVE MARKET DASHBOARD
     </div>
+</header>
+
+
+<main class="container">
+
+    <!-- =========================
+         MOEX
+    ========================= -->
+
+    <div class="section-title">
+        📊 Российский рынок — MOEX
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Сбербанк
+                </span>
+
+                <span class="card-symbol">
+                    MOEX:SBER
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="MOEX:SBER"
+            ></div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Лукойл
+                </span>
+
+                <span class="card-symbol">
+                    MOEX:LKOH
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="MOEX:LKOH"
+            ></div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Газпром
+                </span>
+
+                <span class="card-symbol">
+                    MOEX:GAZP
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="MOEX:GAZP"
+            ></div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Индекс Мосбиржи
+                </span>
+
+                <span class="card-symbol">
+                    MOEX:IMOEX
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="MOEX:IMOEX"
+            ></div>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMMODITIES
+    ========================= -->
+
+    <div class="section-title">
+        🌟 Металлы, нефть и товары
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Brent
+                </span>
+
+                <span class="card-symbol">
+                    TVC:UKOIL
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="TVC:UKOIL"
+            ></div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Золото
+                </span>
+
+                <span class="card-symbol">
+                    COMEX:GC1!
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="COMEX:GC1!"
+            ></div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Какао
+                </span>
+
+                <span class="card-symbol">
+                    ICEUS:CC1!
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="ICEUS:CC1!"
+            ></div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-name">
+                    Кофе
+                </span>
+
+                <span class="card-symbol">
+                    ICEUS:KC1!
+                </span>
+            </div>
+
+            <div
+                class="widget-container"
+                data-symbol="ICEUS:KC1!"
+            ></div>
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+    Данные и графики предоставляются TradingView.
+    <br>
+    Не является инвестиционной рекомендацией.
+</footer>
+
+
+<script>
+    /*
+     * ============================================
+     * TRADINGVIEW WIDGET LOADER
+     * ============================================
+     */
+
+    function createTradingViewWidget(container) {
+
+        const symbol =
+            container.dataset.symbol;
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "tradingview-widget-container";
+
+        wrapper.style.width = "100%";
+        wrapper.style.height = "100%";
+
+
+        const widget =
+            document.createElement("div");
+
+        widget.className =
+            "tradingview-widget-container__widget";
+
+        widget.style.width = "100%";
+        widget.style.height = "100%";
+
+
+        const script =
+            document.createElement("script");
+
+        script.type =
+            "text/javascript";
+
+        script.src =
+            "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+
+        script.async = true;
+
+
+        script.innerHTML = JSON.stringify({
+
+            autosize: true,
+
+            symbol: symbol,
+
+            interval: "D",
+
+            timezone: "exchange",
+
+            theme: "dark",
+
+            style: "1",
+
+            locale: "ru",
+
+            enable_publishing: false,
+
+            allow_symbol_change: true,
+
+            hide_top_toolbar: false,
+
+            hide_legend: false,
+
+            hide_side_toolbar: false,
+
+            save_image: false,
+
+            calendar: false,
+
+            withdateranges: true,
+
+            studies: [
+                "MASimple@tv-basicstudies",
+                "RSI@tv-basicstudies"
+            ],
+
+            support_host:
+                "https://www.tradingview.com"
+
+        });
+
+
+        wrapper.appendChild(widget);
+
+        wrapper.appendChild(script);
+
+        container.appendChild(wrapper);
+    }
+
+
+    /*
+     * ============================================
+     * INITIALIZE ALL CHARTS
+     * ============================================
+     */
+
+    document
+        .querySelectorAll(".widget-container")
+        .forEach(function(container) {
+
+            createTradingViewWidget(container);
+
+        });
+</script>
+
 
 </body>
 </html>
+```
